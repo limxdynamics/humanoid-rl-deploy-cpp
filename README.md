@@ -41,6 +41,11 @@
 - 下载 MuJoCo 仿真器
   ```Bash
   cd ~/limx_ws
+  
+  # Option 1: HTTPS
+  git clone --recurse https://github.com/limxdynamics/humanoid-mujoco-sim.git
+  
+  # Option 2: SSH
   git clone --recurse git@github.com:limxdynamics/humanoid-mujoco-sim.git
   ```
   
