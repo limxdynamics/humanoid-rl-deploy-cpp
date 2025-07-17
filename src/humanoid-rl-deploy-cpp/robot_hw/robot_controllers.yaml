@@ -1,0 +1,39 @@
+﻿# 机器人基础配置
+robot_ip: "127.0.0.1"          # 机器人IP：仿真(127.0.0.1)/真机(10.192.1.2)
+robot_type: "Humanoid"         # 机器人类型：人形机器人
+
+# 功能模块库配置
+libraries:
+  # 阻尼控制器配置
+  - library: "libdamping_controller"
+    abilities:
+      - name: "damping" # 自定义名称
+        type: "humanoid::DampingController" # 注册类型
+        autostart: false       # 不自动启动
+        config:
+          update_rate: 1000    # 控制更新频率(Hz)
+          
+  # 站立控制器配置
+  - library: "libstand_controller"
+    abilities:
+      - name: "stand" # 自定义名称
+        type: "humanoid::StandController" # 注册类型
+        autostart: false       # 不自动启动
+        config:
+          update_rate: 1000    # 控制更新频率(Hz)
+          
+  # 模仿控制器配置
+  - library: "libmimic_controller"
+    abilities:
+      - name: "mimic" # 自定义名称
+        type: "humanoid::MimicController" # 注册类型
+        autostart: false       # 不自动启动
+        config:
+          update_rate: 1000    # 控制更新频率(Hz)
+          
+  # 遥控器配置
+  - library: "librobot_joystick"
+    abilities:
+      - name: "joystick" # 自定义名称
+        type: "humanoid::RobotJoystick" # 注册类型
+        autostart: true        # 系统启动时自动加载遥控器控制功能
