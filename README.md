@@ -1,14 +1,15 @@
-# 训练结果部署
+# English | [中文](README_cn.md)
+# Deployment of Training Results
 
-### 1、概述
+### 1. Overview
 
- 若无需依赖 ROS 系统，仅用 C++ 开发，可参考本部署示例。示例无需依赖 ROS，专注纯 C++ 场景，涵盖环境配置、编译流程及基础功能实现。代码结构清晰，适配主流系统，便于复用或扩展，能降低开发门槛，助力高效完成项目搭建与迭代。
+ If there's no need to rely on the ROS system and you prefer pure C++ development, you can refer to this deployment example. It focuses on pure C++ scenarios without ROS dependencies. It covers environment configuration, the compilation process, and basic function implementation. The code structure is clear, adaptable to mainstream systems, easy to reuse or extend. This can lower the development threshold and help efficiently complete project setup and iterations.
 
-### 2、工程环境搭建
+### 2. Engineering Environment Setup
 
-  推荐以操作系统Ubuntu 20.04 及以上版本为例，按照下面方法安装工程依赖：
+  Take the Ubuntu 20.04 operating system and above as an example. Install project dependencies as follows:
 
-- 安装编译环境
+- Install the compilation environment
 
   ```
   sudo apt update
@@ -16,7 +17,7 @@
   sudo pip3 install vcstool colcon-common-extensions
   ```
 
-- 安装onnxruntime依赖，下载链接：https://github.com/microsoft/onnxruntime/releases/tag/v1.10.0 。请您根据自己的操作系统和平台选择合适版本下载。如在Ubuntu 20.04 x86_64，请按下面步骤进行安装：
+- Install the onnxruntime dependency. Download link: https://github.com/microsoft/onnxruntime/releases/tag/v1.10.0. Choose the appropriate version according to your OS and platform. For Ubuntu 20.04 x86_64, follow these steps:
 
   ```
   wget https://github.com/microsoft/onnxruntime/releases/download/v1.10.0/onnxruntime-linux-x64-1.10.0.tgz
@@ -27,18 +28,18 @@
   sudo cp -a onnxruntime-linux-x64-1.10.0/lib/* /usr/lib
   ```
 
-### 3、创建工作空间
+### 3. Create a Workspace
 
-  可以按照以下步骤，创建一个RL部署开发工作空间：
+  Create an RL deployment and development workspace as follows:
 
-- 打开一个Bash终端。
+- Open a Bash terminal.
 
-- 创建一个新目录来存放工作空间。例如，可以在用户的主目录下创建一个名为“limx_ws”的目录：
+- Create a new directory to store the workspace. For example, create a directory named "limx_ws" in the user's home directory:
   ```Bash
   mkdir -p ~/limx_ws
   ```
   
-- 下载 MuJoCo 仿真器
+- Download the MuJoCo simulator
   ```Bash
   cd ~/limx_ws
   
@@ -49,7 +50,7 @@
   git clone --recurse git@github.com:limxdynamics/humanoid-mujoco-sim.git
   ```
   
-- 下载运动控制算法：
+- Download the motion control algorithm:
   ```Bash
   cd ~/limx_ws
   
@@ -62,8 +63,8 @@
   
   
   
-- 设置机器人型号：请参考“查看/设置机器人型号”章节，查看您的机器人型号。如果尚未设置，请按照以下步骤进行设置。
-  - 通过 Shell 命令 `tree -L 1 humanoid-rl-deploy-cpp/robot_controllers/mimic_controller/config` 列出可用的机器人类型：
+- Set the robot model: If not set, follow these steps:
+  - List available robot types via the Shell command tree -L 1 humanoid-rl-deploy-cpp/robot_controllers/mimic_controller/config:
     
     ```
     cd ~/limx_ws/humanoid-rl-deploy-cpp/src
@@ -73,52 +74,52 @@
     
     ```
     
-  - 以`HU_D03_03`（请根据实际机器人类型进行替换）为例，设置机器人型号类型：
+  - Taking `HU_D03_03` (replace with your actual robot type) as an example, set the robot model type: 
     
     ```
     echo 'export ROBOT_TYPE=HU_D03_03' >> ~/.bashrc && source ~/.bashrc
     ```
 
-### 4、仿真调试
+### 4. Simulation Debugging
 
-- 运行MuJoco 仿真器（推荐Pyhon 3.8 及以上版本）
+- Run the MuJoCo simulator (Python 3.8 or higher recommended)
 
-  - 打开一个 Bash 终端。
+  - Open a Bash terminal.
 
-  - 安装运动控制开发库：
-    - Linux x86_64 环境
+  - Install the motion control development library:
+    - Linux x86_64 environment
     
       ```bash
       cd ~/limx_ws
       pip install humanoid-mujoco-sim/limxsdk-lowlevel/python3/amd64/limxsdk-*-py3-none-any.whl
       ```
     
-    - Linux aarch64 环境
+    - Linux aarch64 environment
     
       ```bash
       cd ~/limx_ws
       pip install humanoid-mujoco-sim/limxsdk-lowlevel/python3/aarch64/limxsdk-*-py3-none-any.whl
       ```
     
-  - 运行 MuJoCo 仿真器：
+  - Run the MuJoCo simulator:
     
     ```bash
     cd ~/limx_ws
     python humanoid-mujoco-sim/simulator.py
     ```
 
-- 运行算法
+- Run the algorithm
 
-  - 打开一个 Bash 终端。
+  - Open a Bash terminal.
 
-  - 编译并运行算法
+  - Compile and run the algorithm
     
     ```bash
-    # 1、编译算法代码
+    # 1. Compile the algorithm code
     cd ~/limx_ws/humanoid-rl-deploy-cpp
     make
     
-    # 2、运行算法
+    # 2. Run the algorithm
     cd ~/limx_ws/humanoid-rl-deploy-cpp
     source build/install/setup.bash
     robot_hw
@@ -126,11 +127,11 @@
     
     ![](doc/simulator.gif)
   
-- 虚拟遥控器：仿真的时候可以使用虚拟遥控器来操作机器人。以下是使用虚拟遥控器的具体步骤。
+- Virtual remote control: Use the virtual remote control to operate the robot during simulation. Here's how:
 
-  - 打开一个 Bash 终端。
+  - Open a Bash terminal.
 
-  - 运行虚拟遥控器
+  - Run the virtual remote control
 
     ```
     ~/limx_ws/humanoid-mujoco-sim/robot-joystick/robot-joystick
@@ -139,38 +140,38 @@
     ![](doc/robot-joystick.png)
 
 
-  - 这时，您可以使用虚拟遥控器来控制机器人。
+  - Control the robot with the virtual remote control:
   
-    | **按键** | **模式**         | **说明**                                                    |
+    | **Button** | **Mode**         | **Description**                                                    |
     | -------- | ---------------- | ----------------------------------------------------------- |
-    | L1+Y     | 切换到站立模式   | 如机器人没法站立，请点击MuJoco界面中的“Reset”进行复位一下。 |
-    | L1+B     | 切换到打招呼模式 |                                                             |
+    | L1+Y     | Switch to standing | If the robot fails to stand, click "Reset" in the MuJoCo interface to reset it. |
+    | L1+B     | Switch to greeting |                                                             |
 
-### 5、真机调试
+### Real Machine Debugging
 
-- 设置您电脑IP：确保您的电脑与机器人本体通过外置网口连接。设置您的电脑IP地址为：`10.192.1.200`，并通过Shell命令`ping 10.192.1.2` 能够正常ping通。如下图所示对您的开发电脑进行IP设置：
+- Set your computer's IP: Ensure your computer is connected to the robot via the external network port. Set your computer's IP address to `10.192.1.200` and verify connectivity with `ping 10.192.1.2`. Configure your computer's IP as shown:
 
   ![img](doc/ip.png)
 
-- 机器人准备工作：
+- Robot preparation:
 
-  - 请通过机器人左右肩膀的挂钩把机器人吊起来。
-  - 按电源键开机后，按下遥控器`右摇杆`按键，启动机器人电机。
-  - 按下遥控器按键 `L1 + START`切换到开发者模式。在此模式下，用户可以开发自己的运动控制算法。（此模式设置后，下次开机继续生效，如需退出开发者模式请按`L1 + L2 + START`退出）。
+  - Hang the robot by the hooks on its shoulders.
+  - Power on the robot, then press the `right joystick` on the remote to start the motors.
+  - Press `L1 + START` on the remote to switch to developer mode. This mode persists across reboots. Exit with `L1 + L2 + START`.
 
-- 实机部署运行。在Bash终端只需下面Shell命令启动控制算法（在进行实机部署运行时，确保机器人吊装非常重要）：
+- Real machine deployment: Execute the following Shell commands in a Bash terminal to start the control algorithm:
 
   ```bash
-  # 1、编译算法代码
+  # 1. Compile the algorithm code
   cd ~/limx_ws/humanoid-rl-deploy-cpp
   make
   
-  # 2、输入机器人IP地址（10.192.1.2）运行算法
+  # 2. Enter the robot's IP address (10.192.1.2) and run the algorithm
   cd ~/limx_ws/humanoid-rl-deploy-cpp
   source build/install/setup.bash
   robot_hw 10.192.1.2
   ```
   
-- 这时您可以通过遥控器按键`L1 + Y`让机器人进入站立模式。
+- Press `L1 + Y` on the remote to make the robot stand.
 
-- 遥控器按`L1 + B`控制机器人打招呼。
+- Press `L1 + B` to control the robot to wave.
