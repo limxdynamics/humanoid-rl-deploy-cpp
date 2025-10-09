@@ -70,14 +70,15 @@
     cd ~/limx_ws/humanoid-rl-deploy-cpp/src
     tree -L 1 humanoid-rl-deploy-cpp/robot_controllers/mimic_controller/config
     humanoid-rl-deploy-cpp/robot_controllers/mimic_controller/config
-    └── HU_D03_03
+    ├── HU_D03_03
+    └── HU_D04_01
     
     ```
     
-  - Taking `HU_D03_03` (replace with your actual robot type) as an example, set the robot model type: 
+  - Taking `HU_D04_01` (replace with your actual robot type) as an example, set the robot model type: 
     
     ```
-    echo 'export ROBOT_TYPE=HU_D03_03' >> ~/.bashrc && source ~/.bashrc
+    echo 'export ROBOT_TYPE=HU_D04_01' >> ~/.bashrc && source ~/.bashrc
     ```
 
 ### 4. Simulation Debugging
