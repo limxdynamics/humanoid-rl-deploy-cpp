@@ -158,7 +158,7 @@
 
   - Hang the robot by the hooks on its shoulders.
   - Power on the robot, then press the `right joystick` on the remote to start the motors.
-  - Press `L1 + START` on the remote to switch to developer mode. This mode persists across reboots. Exit with `L1 + L2 + START`.
+  - Press `R1 + DOWN` on the remote to switch to developer mode. This mode persists across reboots. Exit with `R1 + LEFT`.
 
 - Real machine deployment: Execute the following Shell commands in a Bash terminal to start the control algorithm:
 
