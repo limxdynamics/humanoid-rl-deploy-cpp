@@ -147,6 +147,7 @@
     | -------- | ---------------- | ----------------------------------------------------------- |
     | L1+Y     | Switch to standing | If the robot fails to stand, click "Reset" in the MuJoCo interface to reset it. |
     | L1+B     | Switch to greeting |                                                             |
+    | L2+X     | Switch to walking |                                                                  |
 
 ### Real Machine Debugging
 
@@ -176,3 +177,5 @@
 - Press `L1 + Y` on the remote to make the robot stand.
 
 - Press `L1 + B` to control the robot to wave.
+
+- Press `L2 + X` to control the robot to walk.

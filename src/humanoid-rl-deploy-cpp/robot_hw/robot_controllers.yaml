@@ -30,6 +30,14 @@ libraries:
         autostart: false       # 不自动启动
         config:
           update_rate: 1000    # 控制更新频率(Hz)
+  # 行走控制器配置
+  - library: "libwalking_controller"
+    abilities:
+      - name: "walking" # 自定义名称
+        type: "humanoid::WalkingController" # 注册类型
+        autostart: false        # 不自动启动
+        config:
+          update_rate: 1000    # 控制更新频率(Hz)
           
   # 遥控器配置
   - library: "librobot_joystick"
