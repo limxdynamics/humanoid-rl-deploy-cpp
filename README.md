@@ -174,8 +174,8 @@
   robot_hw 10.192.1.2
   ```
   
-- Press `L1 + Y` on the remote to make the robot stand.
+- Press `L1 + △` on the remote to make the robot stand.
 
-- Press `L1 + B` to control the robot to wave.
+- Press `L1 + 〇` to control the robot to wave.
 
-- Press `L2 + X` to control the robot to walk.
+- Press `L2 + 口` to control the robot to walk.
