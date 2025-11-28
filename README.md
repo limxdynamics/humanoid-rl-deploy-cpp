@@ -149,7 +149,7 @@
     | L1+B     | Switch to greeting |                                                             |
     | L2+X     | Switch to walking |                                                                  |
 
-### Real Machine Debugging
+### 5. Real Machine Debugging
 
 - Set your computer's IP: Ensure your computer is connected to the robot via the external network port. Set your computer's IP address to `10.192.1.200` and verify connectivity with `ping 10.192.1.2`. Configure your computer's IP as shown:
 
