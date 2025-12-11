@@ -141,15 +141,31 @@
     ![](doc/robot-joystick.png)
 
 
-  - Control the robot with the virtual remote control:
+  - Now you can use the virtual joystick to control the robot.
   
     | **Button** | **Mode**         | **Description**                                                    |
     | -------- | ---------------- | ----------------------------------------------------------- |
-    | L1+Y     | Switch to standing | If the robot fails to stand, click "Reset" in the MuJoCo interface to reset it. |
-    | L1+B     | Switch to greeting |                                                             |
-    | L2+X     | Switch to walking |                                                                  |
+    | L1+Y     | Switch to Stand Mode   | If the robot cannot stand, click "Reset" in the MuJoCo interface to reset it. |
+    | L1+A     | Switch to Greeting Mode |                                                             |
+    | R1+B     | Switch to Walk Mode|  **You can train your model for this mode!**                                 |
 
-### 5. Real Machine Debugging
+
+- Deploy you own model for robot walking (Optional)
+  - In the [humanoid-rl-isaaclab](https://github.com/limxdynamics/humanoid-rl-isaaclab) project, run the inference code and export the model, you will find a generated `policy.onnx` in the checkpoint folder:
+    ``` sh
+    python scripts/rsl_rl/play.py --task LimX-Oli-31dof-Velocity --checkpoint path-to-model
+    ```
+  
+  - Add the `policy.onnx` to the folder 
+    ``` sh
+    limx_ws/humanoid-rl-deploy-cpp/src/humanoid-rl-deploy-cpp/robot_controllers/walking_controller/config/HU_D04_01/policy
+    ```
+
+  - Follow the steps above to run the MuJoCo simulator and control the robot.
+
+  - Make sure your model runs perfectly in the simulation before deploying it in the real robot!!!
+
+### Real Machine Debugging
 
 - Set your computer's IP: Ensure your computer is connected to the robot via the external network port. Set your computer's IP address to `10.192.1.200` and verify connectivity with `ping 10.192.1.2`. Configure your computer's IP as shown:
 
@@ -174,8 +190,8 @@
   robot_hw 10.192.1.2
   ```
   
-- Press `L1 + △` on the remote to make the robot stand.
+- Now you can press `L1 + △ (Y)` on the remote control to make the robot stand up.
 
-- Press `L1 + 〇` to control the robot to wave.
+- Press `L1 + 口 (A)` on the remote control to make the robot wave.
 
-- Press `L2 + 口` to control the robot to walk.
+- Press `R1 + 〇 (B)` on the remote control to make the robot walk.
