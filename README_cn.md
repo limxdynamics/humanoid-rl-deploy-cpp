@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="doc/banner_zh.png" alt="humanoid-rl-deploy-cpp：同一个 robot_hw 程序既能驱动 MuJoCo 中的 LimX 人形机器人（127.0.0.1），也能驱动真机（10.192.1.2）" width="100%">
+</p>
+
+<p align="center">
   <a href="README.md">English</a> | <b>中文</b>
 </p>
 
@@ -14,6 +18,12 @@
 ## 1、概述
 
 若无需依赖 ROS 系统，仅用 C++ 开发，可参考本部署示例。示例涵盖环境配置、编译流程及基础功能实现。代码结构清晰，便于复用或扩展，能降低开发门槛，助力高效完成项目搭建与迭代。
+
+<p align="center">
+  <img src="doc/architecture_zh.png" alt="robot_hw 是一个进程：RobotJoystick 把按键组合转成 8888 端口上的 switch 命令，AbilityManager 启用阻尼、站立、打招呼或行走控制器之一，当前控制器通过 limxsdk-lowlevel 与 MuJoCo 或真机交换 RobotState 和 RobotCmd" width="100%">
+</p>
+
+`robot_hw` 会把 `robot_hw/robot_controllers.yaml` 里列出的控制器都加载到一个进程中。每个控制器都以 1000 Hz 运行，但同一时间只启用一个，由手柄切换。
 
 ## 2、工程环境搭建
 
@@ -157,8 +167,16 @@ robot_hw
 | L1+Y     | 切换到站立模式   | 如机器人没法站立，请点击 MuJoCo 界面中的“Reset”进行复位一下。 |
 | L1+B     | 切换到打招呼模式 |                                                             |
 | R1+X     | 切换到行走模式   |   **这个模式可以使用自己训练的模型!**  |
+| L1+A     | 切换到阻尼模式   | 只施加阻尼（Kd，没有目标位置），关节会软下来。 |
+| L1+X     | 停止所有控制器   |                                                             |
 
 ### 4.4 部署自己训练的模型（可选）
+
+<p align="center">
+  <img src="doc/walking_loop_zh.png" alt="行走控制器：每 1 ms 读取关节状态、IMU 和手柄摇杆；每 10 个周期组装 102 维观测（5 帧历史）并运行 policy.onnx；31 个动作裁剪到力矩上限的 95% 后作为 RobotCmd 下发" width="100%">
+</p>
+
+你的策略需要匹配这个接口：每帧 102 维观测、5 帧历史、31 个关节动作（`walking_controller/config/HU_D04_01/param.yaml`）。
 
 - 在 [humanoid-rl-isaaclab](https://github.com/limxdynamics/humanoid-rl-isaaclab) 项目下，运行推理代码并导出模型。它会把 `policy.onnx` 写到模型目录旁边的 `exported/` 文件夹里：
 

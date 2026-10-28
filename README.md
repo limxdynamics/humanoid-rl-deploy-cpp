@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="doc/banner.png" alt="humanoid-rl-deploy-cpp: one robot_hw program drives the LimX humanoid in MuJoCo (127.0.0.1) or on the real robot (10.192.1.2)" width="100%">
+</p>
+
+<p align="center">
   <b>English</b> | <a href="README_cn.md">中文</a>
 </p>
 
@@ -18,6 +22,12 @@ the deployment example to follow. It covers environment configuration, the
 compilation process and basic function implementation. The code structure is
 meant to be easy to reuse or extend, which lowers the development threshold and
 keeps project setup and iterations short.
+
+<p align="center">
+  <img src="doc/architecture_en.png" alt="robot_hw runs one process: RobotJoystick turns button combos into switch commands on port 8888, AbilityManager starts one of the damping, stand, mimic or walking controllers, and the active controller exchanges RobotState and RobotCmd with MuJoCo or the robot through limxsdk-lowlevel" width="100%">
+</p>
+
+`robot_hw` loads every controller listed in `robot_hw/robot_controllers.yaml` into one process. Each runs at 1000 Hz, but only one is active at a time; the joystick picks which.
 
 ## 2. Engineering Environment Setup
 
@@ -181,8 +191,16 @@ You can now use the virtual joystick to control the robot.
 | L1+Y     | Switch to Stand Mode   | If the robot cannot stand, click "Reset" in the MuJoCo interface to reset it. |
 | L1+B     | Switch to Greeting Mode |                                                             |
 | R1+X     | Switch to Walk Mode|  **You can train your model for this mode!**                                 |
+| L1+A     | Switch to Damping Mode | Damping only (Kd, no position target): the joints go limp. |
+| L1+X     | Stop all controllers |                                                             |
 
 ### 4.4 Deploy your own model for robot walking (Optional)
+
+<p align="center">
+  <img src="doc/walking_loop_en.png" alt="Walking controller: every 1 ms it reads joint state, IMU and joystick axes; every 10th tick it builds a 102-value observation with 5 frames of history and runs policy.onnx; the 31 actions are clipped to 95 percent of the torque limit and sent as RobotCmd" width="100%">
+</p>
+
+Your policy must match this interface: 102 observations per frame, 5 frames of history, 31 joint actions (`walking_controller/config/HU_D04_01/param.yaml`).
 
 - In the [humanoid-rl-isaaclab](https://github.com/limxdynamics/humanoid-rl-isaaclab) project, run the inference code and export the model. It writes `policy.onnx` into an `exported/` folder next to the checkpoint:
 
