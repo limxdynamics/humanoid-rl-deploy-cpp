@@ -15,6 +15,8 @@
 
 # Deployment of Training Results
 
+> **Part of the Oli humanoid open-source ecosystem.** Where to start and the other Oli repositories: [Oli quick start](https://github.com/limxdynamics/limxdynamics/blob/main/doc/quickstart.md#oli).
+
 ## 1. Overview
 
 If there is no need to rely on ROS and you prefer pure C++ development, this is

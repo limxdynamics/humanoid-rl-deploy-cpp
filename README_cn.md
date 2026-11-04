@@ -15,6 +15,8 @@
 
 # 训练结果部署
 
+> **Oli 人形机器人开源生态的一部分。** 上手路线和其他 Oli 仓库：[Oli 快速上手](https://github.com/limxdynamics/limxdynamics/blob/main/doc/quickstart_cn.md#oli)。
+
 ## 1、概述
 
 若无需依赖 ROS 系统，仅用 C++ 开发，可参考本部署示例。示例涵盖环境配置、编译流程及基础功能实现。代码结构清晰，便于复用或扩展，能降低开发门槛，助力高效完成项目搭建与迭代。
