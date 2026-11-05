@@ -6,16 +6,12 @@
   <b>English</b> | <a href="README_cn.md">中文</a>
 </p>
 
-<!-- limx-community:start -->
-<!-- Managed by limxdynamics/limxdynamics/.github/community/sync_community.py; QR code: doc/wechat_qr.png in that repo -->
-<p align="center"><a href="https://github.com/limxdynamics/limxdynamics/blob/main/doc/wechat_qr.png"><img src="https://img.shields.io/badge/Join%20Our%20WeChat%20Community-All%20Projects%20Welcome-07C160?style=for-the-badge&logo=wechat&logoColor=white" alt="WeChat Community"></a></p>
-<!-- limx-community:end -->
-
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-2f6feb" alt="License: Apache-2.0"></a>
   <img src="https://img.shields.io/badge/Ubuntu-20.04%2B-2f6feb" alt="Ubuntu 20.04 or newer">
   <img src="https://img.shields.io/badge/onnxruntime-1.10.0-2f6feb" alt="onnxruntime 1.10.0">
   <img src="https://img.shields.io/badge/ROS-not%20required-2f6feb" alt="ROS is not required">
+  <a href="https://github.com/limxdynamics/limxdynamics/blob/main/doc/wechat_qr.png"><img src="https://img.shields.io/badge/WeChat-Developer%20Community-07C160?logo=wechat&logoColor=white" alt="WeChat Community"></a>
 </p>
 
 # Deployment of Training Results
